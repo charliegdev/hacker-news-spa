@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
-const drawerWidth = 240;
+const drawerWidth = 480;
 
 const styles = ({ mixins }) => ({
   drawerPaper: {
@@ -20,10 +21,9 @@ const ListDrawer = ({ classes }) => {
   return (
     <Drawer variant="permanent" classes={{ paper: drawerPaper }}>
       <div className={toolbar} />
-      <List>News One</List>
-      <List>News Two</List>
-      <List>News Three</List>
-      <List>News Four</List>
+      <List>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => <ListItem key={index} button>{`Tesla News ${index}`}</ListItem>)}
+      </List>
     </Drawer>
   );
 }
