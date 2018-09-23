@@ -1,15 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
+import Layout from "./components/Layout";
+import ListDrawer from "./components/ListDrawer";
+import NewsContent from "./components/NewsContent";
 import SearchAppBar from "./components/SearchAppBar";
-import CenteredGrid from "./components/CenteredGrid";
 
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <SearchAppBar />
-        <CenteredGrid />
+        <Layout
+          top={<SearchAppBar />}
+          left={<ListDrawer />}
+          center={<NewsContent />}
+        />
       </Fragment>
     );
   }

@@ -65,7 +65,7 @@ const SearchAppBar = ({ classes }) => {
   const { root, grow, search, searchIcon, inputRoot, inputInput } = classes;
   return (
     <div className={root}>
-      <AppBar position="static">
+      <AppBar>
         <Toolbar>
           <Typography variant="title" color="inherit" className={grow}>Hacker News SPA</Typography>
           <div className={search}>
