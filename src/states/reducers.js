@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { actions } from "./actions";
 
-const { CHANGE_INPUT, SELECT_TOPIC } = actions;
+const { CHANGE_INPUT, SELECT_TOPIC, RECEIVED_RESULTS } = actions;
 
 const defaultInputState = {
   currentInput: "",
@@ -26,10 +26,19 @@ const results = (state = {}, action) => {
   const { type } = action;
   switch (type) {
   case SELECT_TOPIC: {
+    // When user submit the form by pressing Enter
     const { currentInput } = action;
     if (state[currentInput]) return;
     mockCallApi(currentInput);
     return state;
+  }
+  case RECEIVED_RESULTS: {
+    // When the API call has returned results with news
+    const { topic, data } = action;
+    return { 
+      ...state,
+      [topic]: data
+    }
   }
   default:
     return state;
@@ -38,8 +47,10 @@ const results = (state = {}, action) => {
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-  case (SELECT_TOPIC):
+  case SELECT_TOPIC:
     return true;
+  case RECEIVED_RESULTS:
+    return false;
   default: 
     return state;
   }
