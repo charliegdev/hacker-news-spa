@@ -61,7 +61,7 @@ const styles = ({ breakpoints, shape, palette, spacing, transitions }) => {
   };
 };
 
-const SearchAppBar = ({ classes }) => {
+const SearchAppBar = ({ classes, currentInput, onInputChange, onTopicSet }) => {
   const { root, grow, search, searchIcon, inputRoot, inputInput } = classes;
   return (
     <div className={root}>
@@ -70,11 +70,15 @@ const SearchAppBar = ({ classes }) => {
           <Typography variant="title" color="inherit" className={grow}>Hacker News SPA</Typography>
           <div className={search}>
             <div className={searchIcon}><SearchIcon /></div>
-            <Input
-              placeholder="Search a Topic..."
-              disableUnderline
-              classes={{ root: inputRoot, input: inputInput }}
-            />
+            <form onSubmit={onTopicSet}>
+              <Input
+                placeholder="Search a Topic..."
+                disableUnderline
+                classes={{ root: inputRoot, input: inputInput }}
+                onChange={onInputChange}
+                value={currentInput}
+              />
+            </form>
           </div>
         </Toolbar>
       </AppBar>
@@ -83,7 +87,10 @@ const SearchAppBar = ({ classes }) => {
 };
 
 SearchAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  currentInput: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onTopicSet: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(SearchAppBar);

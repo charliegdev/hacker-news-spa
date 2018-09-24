@@ -3,7 +3,7 @@ import './App.css';
 import Layout from "./components/Layout";
 import ListDrawer from "./components/ListDrawer";
 import NewsContent from "./components/NewsContent";
-import SearchAppBar from "./components/SearchAppBar";
+import TopBarWithSearch from "./containers/TopBarWithSearch";
 
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Fragment>
         <Layout
-          top={<SearchAppBar />}
+          top={<TopBarWithSearch />}
           left={<ListDrawer />}
           center={<NewsContent />}
         />
