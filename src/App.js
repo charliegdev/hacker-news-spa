@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import Layout from "./components/Layout";
-import ListDrawer from "./components/ListDrawer";
+import NewsList from "./containers/NewsList";
 import NewsContent from "./components/NewsContent";
 import TopBarWithSearch from "./containers/TopBarWithSearch";
 
@@ -12,7 +12,7 @@ class App extends Component {
       <Fragment>
         <Layout
           top={<TopBarWithSearch />}
-          left={<ListDrawer />}
+          left={<NewsList />}
           center={<NewsContent />}
         />
       </Fragment>

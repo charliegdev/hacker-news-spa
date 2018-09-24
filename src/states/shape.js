@@ -4,10 +4,11 @@ const states = {
     currentInput: "",
     topic: "react"
   },
+  isFetching: false,
   results: {
-    "react": [],
-    "redux": [],
-    "tesla": []
+    react: [],
+    redux: [],
+    tesla: []
   }
 };
 

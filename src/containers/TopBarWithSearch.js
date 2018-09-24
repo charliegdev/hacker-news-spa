@@ -14,8 +14,8 @@ const mapDispatchToProps = dispatch => ({
   },
   onTopicSet: e => {
     e.preventDefault();
-    // Sort of a hack. Shouldn't have to reach this deep; might be because of Material-UI's <Input />.
     // Having trouble retrieving values in <Input /> from the wrapping <form></form>.
+    // Sort of a hack. Shouldn't have to reach this deep; might be because of Material-UI's <Input />.
     dispatch(doSelectTopic(e.target[0].defaultValue));
   }
 });

@@ -36,4 +36,13 @@ const results = (state = {}, action) => {
   }
 };
 
-export default combineReducers({ input, results });
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+  case (SELECT_TOPIC):
+    return true;
+  default: 
+    return state;
+  }
+};
+
+export default combineReducers({ input, results, isFetching });
