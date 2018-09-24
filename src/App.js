@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import Layout from "./components/Layout";
-import ListDrawer from "./components/ListDrawer";
+import NewsList from "./containers/NewsList";
 import NewsContent from "./components/NewsContent";
-import SearchAppBar from "./components/SearchAppBar";
+import TopBarWithSearch from "./containers/TopBarWithSearch";
 
 
 class App extends Component {
@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <Fragment>
         <Layout
-          top={<SearchAppBar />}
-          left={<ListDrawer />}
+          top={<TopBarWithSearch />}
+          left={<NewsList />}
           center={<NewsContent />}
         />
       </Fragment>

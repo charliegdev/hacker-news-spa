@@ -1,12 +1,20 @@
 import { combineReducers } from "redux";
 import { actions } from "./actions";
 
-const { NEW_INPUT } = actions;
+const { CHANGE_INPUT, SELECT_TOPIC } = actions;
 
-const input = (state = "tesla", action) => {
-  switch (action.type) {
-  case NEW_INPUT:
-    return action.input;
+const defaultInputState = {
+  currentInput: "",
+  topic: "Tesla"
+};
+
+const input = (state = defaultInputState, action) => {
+  const { type, currentInput } = action;
+  switch (type) {
+  case CHANGE_INPUT:
+    return { ...state, currentInput };
+  case SELECT_TOPIC:
+    return { ...state, topic: currentInput }
   default:
     return state;
   }
@@ -15,15 +23,26 @@ const input = (state = "tesla", action) => {
 const mockCallApi = topic => console.log("Pretending I'm calling Hacker News API: " + topic);
 
 const results = (state = {}, action) => {
-  const { type, input } = action;
+  const { type } = action;
   switch (type) {
-  case NEW_INPUT:
-    if (state[input]) return;
-    mockCallApi(input);
-    break;
+  case SELECT_TOPIC: {
+    const { currentInput } = action;
+    if (state[currentInput]) return;
+    mockCallApi(currentInput);
+    return state;
+  }
   default:
     return state;
   }
 };
 
-export default combineReducers({ input, results });
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+  case (SELECT_TOPIC):
+    return true;
+  default: 
+    return state;
+  }
+};
+
+export default combineReducers({ input, results, isFetching });

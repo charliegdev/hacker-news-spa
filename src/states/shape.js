@@ -1,10 +1,14 @@
 // Example of what an application state would look like. Not actually used.
 const states = {
-  input: "react",
+  input: {
+    currentInput: "",
+    topic: "react"
+  },
+  isFetching: false,
   results: {
-    "react": [],
-    "redux": [],
-    "tesla": []
+    react: [],
+    redux: [],
+    tesla: []
   }
 };
 
