@@ -9,10 +9,7 @@ import ProgressSpinner from "./ProgressSpinner";
 const drawerWidth = 480;
 
 const styles = ({ mixins }) => ({
-  drawerPaper: {
-    position: 'relative',
-    width: drawerWidth,
-  },
+  drawerPaper: { width: drawerWidth },
   toolbar: mixins.toolbar
 });
 
@@ -25,7 +22,9 @@ const ListDrawer = ({ classes, isFetching, newsItems }) => {
       {isFetching ? 
         <ProgressSpinner /> :
         <List>
-          {newsItems && newsItems.map(item => <ListItem key={item.objectID} button>{item.title}</ListItem>)}
+          {newsItems ?
+            newsItems.map(item => <ListItem key={item.objectID} button>{item.title}</ListItem>) :
+            <ListItem button>Search for a topic on the top right</ListItem>} 
         </List>
       }
     </Drawer>
