@@ -1,3 +1,4 @@
+// Look at shape.js file to see what a sample state would look like.
 import { combineReducers } from "redux";
 import { actions } from "./actions";
 
@@ -20,7 +21,6 @@ const input = (state = defaultInputState, action) => {
   }
 };
 
-const mockCallApi = topic => console.log("Pretending I'm calling Hacker News API: " + topic);
 
 const results = (state = {}, action) => {
   const { type } = action;
@@ -29,7 +29,6 @@ const results = (state = {}, action) => {
     // When user submit the form by pressing Enter
     const { currentInput } = action;
     if (state[currentInput]) return;
-    mockCallApi(currentInput);
     return state;
   }
   case RECEIVED_RESULTS: {
