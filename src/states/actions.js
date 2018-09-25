@@ -2,11 +2,13 @@ import axios from "axios";
 const CHANGE_INPUT = "CHANGE_INPUT";
 const SELECT_TOPIC = "SELECT_TOPIC";
 const RECEIVED_RESULTS = "RECEIVE_RESULTS";
+const RESULT_CACHED = "RESULT_CACHED";
 const SHOW_CONTENT = "SHOW_CONTENT";
 
-const actions = { CHANGE_INPUT, SELECT_TOPIC, RECEIVED_RESULTS, SHOW_CONTENT };
+const actions = { CHANGE_INPUT, SELECT_TOPIC, RECEIVED_RESULTS, SHOW_CONTENT, RESULT_CACHED };
 const doReceivedResults = (topic, data) => ({ type: RECEIVED_RESULTS, topic, data });
 const doSelectTopic = currentInput => ({ type: SELECT_TOPIC, currentInput });
+const doResultCached = () => ({ type: RESULT_CACHED });
 
 const fetchTopic = topic => dispatch => {
   dispatch(doSelectTopic(topic));
@@ -22,6 +24,7 @@ const fetchTopicIfNeeded = topic => (dispatch, getState) => {
   if (shouldFetchTopic(getState(), topic)) {
     return dispatch(fetchTopic(topic));
   } else {
+    dispatch(doResultCached());
     return Promise.resolve();
   }
 }

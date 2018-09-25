@@ -2,7 +2,7 @@
 import { combineReducers } from "redux";
 import { actions } from "./actions";
 
-const { CHANGE_INPUT, SELECT_TOPIC, RECEIVED_RESULTS } = actions;
+const { CHANGE_INPUT, SELECT_TOPIC, RECEIVED_RESULTS, RESULT_CACHED } = actions;
 
 const defaultInputState = {
   currentInput: "",
@@ -15,7 +15,13 @@ const input = (state = defaultInputState, action) => {
   case CHANGE_INPUT:
     return { ...state, currentInput };
   case SELECT_TOPIC:
-    return { ...state, topic: currentInput }
+    return { 
+      ...state, 
+      topic: currentInput, 
+      currentInput: "" 
+    }
+  case RESULT_CACHED:
+    return { ...state, currentInput: "" };
   default:
     return state;
   }
