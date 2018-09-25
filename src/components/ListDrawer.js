@@ -16,7 +16,7 @@ const styles = ({ mixins }) => ({
   toolbar: mixins.toolbar
 });
 
-const ListDrawer = ({ classes, isFetching }) => {
+const ListDrawer = ({ classes, isFetching, newsItems }) => {
   const { drawerPaper, toolbar } = classes;
 
   return (
@@ -25,7 +25,7 @@ const ListDrawer = ({ classes, isFetching }) => {
       {isFetching ? 
         <ProgressSpinner /> :
         <List>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => <ListItem key={index} button>{`Tesla News ${index}`}</ListItem>)}
+          {newsItems && newsItems.map(item => <ListItem key={item.objectID} button>{item.title}</ListItem>)}
         </List>
       }
     </Drawer>
@@ -34,7 +34,8 @@ const ListDrawer = ({ classes, isFetching }) => {
 
 ListDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool
+  isFetching: PropTypes.bool,
+  newsItems: PropTypes.array
 };
 
 export default withStyles(styles)(ListDrawer);
