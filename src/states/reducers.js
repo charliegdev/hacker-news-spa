@@ -25,12 +25,6 @@ const input = (state = defaultInputState, action) => {
 const results = (state = {}, action) => {
   const { type } = action;
   switch (type) {
-  case SELECT_TOPIC: {
-    // When user submit the form by pressing Enter
-    const { currentInput } = action;
-    if (state[currentInput]) return;
-    return state;
-  }
   case RECEIVED_RESULTS: {
     // When the API call has returned results with news
     const { topic, data } = action;

@@ -16,10 +16,20 @@ const fetchTopic = topic => dispatch => {
     }, error => console.error(error));
 }
 
+const shouldFetchTopic = (state, topic) => !state.results[topic];
+
+const fetchTopicIfNeeded = topic => (dispatch, getState) => {
+  if (shouldFetchTopic(getState(), topic)) {
+    return dispatch(fetchTopic(topic));
+  } else {
+    return Promise.resolve();
+  }
+}
+
 const actionCreators = {
   doChangeInput: currentInput => ({ type: CHANGE_INPUT, currentInput }),
   doShowContent: id => ({ type: SHOW_CONTENT, id }),
-  fetchTopic
+  fetchTopicIfNeeded
 };
 
 export { actions, actionCreators };
